@@ -20,7 +20,7 @@ defmodule ChitchatWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/room" do
+  scope "/room", ChitchatWeb do
     live "/new", Room.NewLive, :new
     live "/:slug", Room.ShowLive, :show
   end
