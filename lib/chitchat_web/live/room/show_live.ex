@@ -9,11 +9,18 @@ defmodule ChitchatWeb.Room.ShowLive do
   alias Chitchat.ConnectedUser
 
   alias Chitchat.Presence
+  alias Phoenix.Socket.Broadcast
 
   @impl true
   def render(assigns) do
     ~H"""
     <h1><%= @room.title %></h1>
+    <h3>Connected Users:</h3>
+    <ul>
+    <%= for uuid <- @connected_users do %>
+      <li><%= uuid %></li>
+    <% end %>
+    </ul>
     """
   end
 
@@ -37,8 +44,22 @@ defmodule ChitchatWeb.Room.ShowLive do
           |> assign(:room, room)
           |> assign(:user, user)
           |> assign(:slug, slug)
+          |> assign(:connected_users, [])
         }
     end
+  end
+
+  @impl true
+  def handle_info(%Broadcast{event: "presence_diff"}, socket) do
+    {:noreply,
+      socket
+      |> assign(:connected_users, list_present(socket))
+    }
+  end
+
+  defp list_present(socket) do
+    Presence.list("room:" <> socket.assigns.slug)
+    |> Enum.map(fn {k, _} -> k end)
   end
 
   defp create_connected_user do
