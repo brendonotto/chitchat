@@ -6,7 +6,7 @@ defmodule ChitchatWeb.Room.NewLive do
 
   @impl true
   def render(assigns) do
-    ~L"""
+    ~H"""
     <h1>Create a New Room</h1>
     <div>
       <%= form_for @changeset, "#", [phx_change: "validate", phx_submit: "save"],

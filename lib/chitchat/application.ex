@@ -14,6 +14,8 @@ defmodule Chitchat.Application do
       ChitchatWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Chitchat.PubSub},
+      # Start the Presence module.
+      ChitchatWeb.Presence,
       # Start the Endpoint (http/https)
       ChitchatWeb.Endpoint
       # Start a worker by calling: Chitchat.Worker.start_link(arg)
