@@ -17,7 +17,8 @@ defmodule Chitchat.Application do
       # Start the Presence module.
       ChitchatWeb.Presence,
       # Start the Endpoint (http/https)
-      ChitchatWeb.Endpoint
+      ChitchatWeb.Endpoint,
+      ChitchatWeb.Stun
       # Start a worker by calling: Chitchat.Worker.start_link(arg)
       # {Chitchat.Worker, arg}
     ]

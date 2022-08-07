@@ -118,3 +118,8 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* Rotate the video to give a mirror appearance. */
+#local-video {
+  transform: rotateY(180deg);
+}
